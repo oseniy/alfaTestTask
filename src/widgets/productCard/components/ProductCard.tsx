@@ -10,12 +10,12 @@ interface ProductCardProps {
 
 export default function ProductCard({product} : ProductCardProps) {
     return (
-        <Item variant="outline" className="">
+        <Item variant="outline">
             <ItemHeader>
                 <img 
                 src={product.image} 
                 alt="Logo"
-                className="aspect-square w-full rounded-sm object-cover"/>
+                className="aspect-square w-full rounded-sm object-contain"/>
             </ItemHeader>
             <ItemContent>
               <ItemTitle className="overflow-hidden text-ellipsis line-clamp-2">{product.title}</ItemTitle>
