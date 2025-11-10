@@ -1,6 +1,5 @@
 import ProductCard from "@/widgets/productCard/components/ProductCard";
-import { Item } from "./shadcn/ui/item";
-import type { product, products } from "@/types";
+import type { products } from "@/types";
 
 const productsData: products = {
   list: [
