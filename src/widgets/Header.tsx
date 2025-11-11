@@ -6,9 +6,11 @@ import { Separator } from "@/shared/shadcn/ui/separator";
 import { Switch } from "@/shared/shadcn/ui/switch";
 import { Label } from "@/shared/shadcn/ui/label";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/shared/shadcn/ui/tooltip";
+import { useIsMobile } from "@/hooks/useIsMobile";
 
 
 export default function Header() {
+    const isMobile = useIsMobile()
     return (
         <div className="sticky top-0 w-full pt-4 px-8 bg-white">
             <ButtonGroup className="pb-4">
@@ -19,7 +21,7 @@ export default function Header() {
                                 <Plus/> Создать
                             </Button>
                         </TooltipTrigger>
-                        <TooltipContent>Создать новый товар</TooltipContent>
+                        {!isMobile && <TooltipContent>Создать новый товар</TooltipContent>}
                     </Tooltip>
                 </ButtonGroup>
                 <ButtonGroup>
@@ -31,7 +33,7 @@ export default function Header() {
                             <TooltipTrigger>
                                 <Switch id="favorite-only" />
                             </TooltipTrigger>
-                            <TooltipContent>Показать только избранные</TooltipContent>
+                            {!isMobile && <TooltipContent>Показать только избранные</TooltipContent>}
                         </Tooltip>
                         <Label htmlFor="airplane-mode">Только избранные</Label>
                     </div>

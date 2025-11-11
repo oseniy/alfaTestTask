@@ -1,4 +1,5 @@
 import { useAppDispatch, useAppSelector } from "@/hooks/reduxHooks";
+import { useIsMobile } from "@/hooks/useIsMobile";
 import { toggleLike } from "@/model/productsSlice";
 import { Toggle } from "@/shared/shadcn/ui/toggle";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/shared/shadcn/ui/tooltip";
@@ -9,6 +10,7 @@ export default function Like({ id }: { id: string }) {
   const dispatch = useAppDispatch()
   const likedProductIds = useAppSelector((s) => s.products.likedProductIds)
   const isLiked = likedProductIds.includes(id)
+  const isMobile = useIsMobile()
 
     return (
         <Tooltip>
@@ -24,7 +26,7 @@ export default function Like({ id }: { id: string }) {
                     <Heart/>
                 </Toggle>
             </TooltipTrigger>
-            <TooltipContent>Добавить в избранные</TooltipContent>
+            {!isMobile && <TooltipContent>Добавить в избранные</TooltipContent>}
         </Tooltip>
     )
 }

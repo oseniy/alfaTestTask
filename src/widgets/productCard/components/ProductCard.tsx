@@ -5,12 +5,15 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "@/shared/shadcn/ui/tool
 import type { productT } from "@/types";
 import { Heart, Trash2 } from "lucide-react"
 import Like from "../features/Like";
+import { useIsMobile } from "@/hooks/useIsMobile";
 
 interface ProductCardProps {
     product: productT
 }
 
 export default function ProductCard({product} : ProductCardProps) {
+    const isMobile = useIsMobile()
+
     return (
         <Item variant="outline">
             <ItemHeader>
@@ -28,7 +31,7 @@ export default function ProductCard({product} : ProductCardProps) {
                     <TooltipTrigger>
                         <Button variant="outline" size="icon-lg"> <Trash2/> </Button>
                     </TooltipTrigger>
-                    <TooltipContent>Удалить товар</TooltipContent>
+                    {!isMobile && <TooltipContent>Удалить товар</TooltipContent>}
                 </Tooltip>
               </ItemContent>
             </ItemContent>
