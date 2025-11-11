@@ -1,23 +1,11 @@
-import ProductCard from "@/widgets/productCard/components/ProductCard";
+import ProductCard from "@/widgets/productCard/ProductCard";
 import { useGetProductsQuery } from "@/model/productsApi";
 import { useAppDispatch, useAppSelector } from "@/hooks/reduxHooks";
 import { useMemo, useState } from "react";
-
-type FilterType = 'all' | 'liked';
+import { useGetFilteredProducts } from "./hooks/useGetFilteredProducts";
 
 export default function ProductsList() {
-    const allProducts = useAppSelector((state) => state.products.list);
-    const likedProductIds = useAppSelector((state) => state.products.likedProductIds);
-    const dispatch = useAppDispatch();
-
-    const [filter, setFilter] = useState<FilterType>('all');
-
-    const filteredProducts = useMemo(() => {
-        if (filter === 'liked') {
-            return allProducts.filter((product) => likedProductIds.includes(product.id));
-        }
-        return allProducts;
-    }, [allProducts, likedProductIds, filter]);
+    const filteredProducts = useGetFilteredProducts();
 
     return (
         <div className="w-full px-8 py-4 grid gap-6

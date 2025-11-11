@@ -1,10 +1,9 @@
 import { Button } from "@/shared/shadcn/ui/button";
 import { Item, ItemContent, ItemDescription, ItemHeader, ItemTitle } from "@/shared/shadcn/ui/item";
-import { Toggle } from "@/shared/shadcn/ui/toggle";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/shared/shadcn/ui/tooltip";
 import type { productT } from "@/types";
-import { Heart, Trash2 } from "lucide-react"
-import Like from "../features/Like";
+import { Trash2 } from "lucide-react"
+import Like from "./features/Like";
 import { useIsMobile } from "@/hooks/useIsMobile";
 
 interface ProductCardProps {

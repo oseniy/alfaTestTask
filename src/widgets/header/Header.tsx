@@ -7,6 +7,7 @@ import { Switch } from "@/shared/shadcn/ui/switch";
 import { Label } from "@/shared/shadcn/ui/label";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/shared/shadcn/ui/tooltip";
 import { useIsMobile } from "@/hooks/useIsMobile";
+import LikedOnlyFilterSwitch from "./features/LikedOnlyFilterSwitch";
 
 
 export default function Header() {
@@ -28,15 +29,7 @@ export default function Header() {
                     <Separator orientation="vertical"/>
                 </ButtonGroup>
                 <ButtonGroup className="">
-                    <div className="flex items-center space-x-2">
-                        <Tooltip>
-                            <TooltipTrigger>
-                                <Switch id="favorite-only" />
-                            </TooltipTrigger>
-                            {!isMobile && <TooltipContent>Показать только избранные</TooltipContent>}
-                        </Tooltip>
-                        <Label htmlFor="airplane-mode">Только избранные</Label>
-                    </div>
+                    <LikedOnlyFilterSwitch/>
                 </ButtonGroup>
             </ButtonGroup>
             <Separator/>

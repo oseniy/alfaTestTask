@@ -1,6 +1,6 @@
 import Layout from "@/shared/Layout";
-import ProductsList from "@/shared/ProductsList";
-import Header from "@/widgets/Header";
+import ProductsList from "@/widgets/productsList/ProductsList";
+import Header from "@/widgets/header/Header";
 
 
 export default function Products() {
