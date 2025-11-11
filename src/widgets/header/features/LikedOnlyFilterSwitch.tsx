@@ -12,9 +12,11 @@ export default function LikedOnlyFilterSwitch() {
     return (
         <div className="flex items-center space-x-2">
             <Tooltip>
-                <TooltipTrigger>
-                    <Switch 
-                    onCheckedChange={() => dispatch(toggleLikedOnlyFilter())} />
+                <TooltipTrigger asChild>
+                    <div>
+                        <Switch
+                        onCheckedChange={() => dispatch(toggleLikedOnlyFilter())} />
+                    </div>
                 </TooltipTrigger>
                 {!isMobile && <TooltipContent>Показать только избранные</TooltipContent>}
             </Tooltip>

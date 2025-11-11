@@ -14,17 +14,20 @@ export default function Like({ id }: { id: string }) {
 
     return (
         <Tooltip>
-            <TooltipTrigger>
-                <Toggle 
-                pressed={isLiked}
-                onPressedChange={() => dispatch(toggleLike(id))}
-                size="icon-lg"
-                variant="outline"
-                className="data-[state=on]:bg-transparent 
-                data-[state=on]:*:[svg]:fill-red-500 
-                data-[state=on]:*:[svg]:stroke-red-500">
-                    <Heart/>
-                </Toggle>
+            <TooltipTrigger asChild>
+                <div>
+
+                    <Toggle 
+                    pressed={isLiked}
+                    onPressedChange={() => dispatch(toggleLike(id))}
+                    size="icon-lg"
+                    variant="outline"
+                    className="data-[state=on]:bg-transparent 
+                    data-[state=on]:*:[svg]:fill-red-500 
+                    data-[state=on]:*:[svg]:stroke-red-500">
+                        <Heart/>
+                    </Toggle>
+                </div>
             </TooltipTrigger>
             {!isMobile && <TooltipContent>Добавить в избранные</TooltipContent>}
         </Tooltip>
