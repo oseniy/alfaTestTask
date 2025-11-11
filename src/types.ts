@@ -1,10 +1,10 @@
-export interface product {
+export interface productT {
     id: string,
     title: string,
     price: number,
     image: string
 }
 
-export interface products {
-    list: product[]
+export interface productsT {
+    list: productT[]
 }

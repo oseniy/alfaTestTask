@@ -2,11 +2,11 @@ import { Button } from "@/shared/shadcn/ui/button";
 import { Item, ItemContent, ItemDescription, ItemHeader, ItemTitle } from "@/shared/shadcn/ui/item";
 import { Toggle } from "@/shared/shadcn/ui/toggle";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/shared/shadcn/ui/tooltip";
-import type { product } from "@/types";
+import type { productT } from "@/types";
 import { Heart, Trash2 } from "lucide-react"
 
 interface ProductCardProps {
-    product: product
+    product: productT
 }
 
 export default function ProductCard({product} : ProductCardProps) {
