@@ -3,12 +3,14 @@ import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 
 interface productsState extends productsT {
-    likedProductIds: string[]
+    likedProductIds: string[],
+    LikedOnlyFilter: boolean
 }
 
 const initialState: productsState = {
     list: [],
-    likedProductIds: []
+    likedProductIds: [],
+    LikedOnlyFilter: false
 }
 
 export const productsSlice = createSlice({
@@ -33,6 +35,9 @@ export const productsSlice = createSlice({
                 state.likedProductIds.push(id);
             }
         },
+        toggleLikedOnlyFilter: (state) => {
+            state.LikedOnlyFilter = !state.LikedOnlyFilter;
+        },
         updateProduct: (state, action: PayloadAction<productT>) => {
             const index = state.list.findIndex(product => product.id === action.payload.id);
             if (index !== -1) {
@@ -42,6 +47,6 @@ export const productsSlice = createSlice({
     }
 })
 
-export const { setProducts, addProduct, deleteProduct, toggleLike, updateProduct } = productsSlice.actions
+export const { setProducts, addProduct, deleteProduct, toggleLike, updateProduct, toggleLikedOnlyFilter } = productsSlice.actions
 
 export default productsSlice.reducer
