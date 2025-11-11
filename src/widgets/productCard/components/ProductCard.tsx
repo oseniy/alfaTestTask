@@ -4,6 +4,7 @@ import { Toggle } from "@/shared/shadcn/ui/toggle";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/shared/shadcn/ui/tooltip";
 import type { productT } from "@/types";
 import { Heart, Trash2 } from "lucide-react"
+import Like from "../features/Like";
 
 interface ProductCardProps {
     product: productT
@@ -22,19 +23,7 @@ export default function ProductCard({product} : ProductCardProps) {
               <ItemTitle className="overflow-hidden text-ellipsis line-clamp-2">{product.title}</ItemTitle>
               <ItemDescription className="text-[green]">{product.price} $</ItemDescription>
               <ItemContent className=" pt-2 flex-row justify-between">
-                <Tooltip>
-                    <TooltipTrigger>
-                        <Toggle 
-                        size="icon-lg"
-                        variant="outline"
-                        className="data-[state=on]:bg-transparent 
-                        data-[state=on]:*:[svg]:fill-red-500 
-                        data-[state=on]:*:[svg]:stroke-red-500">
-                            <Heart/>
-                        </Toggle>
-                    </TooltipTrigger>
-                    <TooltipContent>Добавить в избранные</TooltipContent>
-                </Tooltip>
+                <Like id={product.id}/>
                 <Tooltip>
                     <TooltipTrigger>
                         <Button variant="outline" size="icon-lg"> <Trash2/> </Button>

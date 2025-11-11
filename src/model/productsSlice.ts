@@ -1,21 +1,47 @@
-import type { productsT } from '@/types'
+import type { productsT, productT } from '@/types'
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 
-const initialState: productsT = {
-    list: []
+interface productsState extends productsT {
+    likedProductIds: string[]
+}
+
+const initialState: productsState = {
+    list: [],
+    likedProductIds: []
 }
 
 export const productsSlice = createSlice({
     name: "products",
     initialState,
     reducers: {
-        addToFavorite: (state, action: PayloadAction<number>) => {
-            state
-        }
+        setProducts: (state, action: PayloadAction<productT[]>) => {
+            state.list = action.payload;
+        },
+        addProduct: (state, action: PayloadAction<productT>) => {
+            state.list.push(action.payload)
+        },
+        deleteProduct: (state, action: PayloadAction<string>) => {
+            state.list = state.list.filter((p) => p.id !== action.payload)
+            state.likedProductIds = state.likedProductIds.filter((id) => id !== action.payload)
+        },
+        toggleLike: (state, action: PayloadAction<string>) => {
+            const id = action.payload;
+            if (state.likedProductIds.includes(id)) {
+                state.likedProductIds = state.likedProductIds.filter((productId) => productId !== id);
+            } else {
+                state.likedProductIds.push(id);
+            }
+        },
+        updateProduct: (state, action: PayloadAction<productT>) => {
+            const index = state.list.findIndex(product => product.id === action.payload.id);
+            if (index !== -1) {
+                state.list[index] = action.payload;
+            }
+        },
     }
 })
 
-export const { addToFavorite } = productsSlice.actions
+export const { setProducts, addProduct, deleteProduct, toggleLike, updateProduct } = productsSlice.actions
 
 export default productsSlice.reducer

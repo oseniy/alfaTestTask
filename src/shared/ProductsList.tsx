@@ -3,7 +3,7 @@ import { useGetProductsQuery } from "@/model/productsApi";
 
 
 export default function ProductsList() {
-    const { data, isLoading, error } = useGetProductsQuery()
+    const { data, isSuccess } = useGetProductsQuery()
     return (
         <div className="w-full px-8 py-4 grid gap-6
             max-xs:[grid-template-columns:repeat(auto-fill,minmax(100px,1fr))]
