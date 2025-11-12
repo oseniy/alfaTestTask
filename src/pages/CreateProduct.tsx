@@ -1,15 +1,15 @@
 
 import { useForm } from "react-hook-form"
-import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/shared/shadcn/ui/dialog";
+import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from "@/shared/shadcn/ui/dialog";
 import { Input } from "@/shared/shadcn/ui/input";
 import { InputGroup, InputGroupText, InputGroupAddon, InputGroupInput, InputGroupTextarea } from "@/shared/shadcn/ui/input-group";
 import { Label } from "@/shared/shadcn/ui/label";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
 import { Button } from "@/shared/shadcn/ui/button";
 import { useAppDispatch, useAppSelector } from "@/hooks/reduxHooks";
 import { addProduct } from "@/model/productsSlice";
 import type { productId } from "@/types";
+import { useState } from "react";
 
 interface CreateProductFormValues {
   title: string
@@ -24,6 +24,8 @@ export default function CreateProduct() {
     const lastId = useAppSelector((s) => s.products.list[s.products.list.length-1]?.id)
     const { register, handleSubmit, watch, reset, formState: { errors } } =
     useForm<CreateProductFormValues>()
+
+    const [fileName, setFileName] = useState<string>("");
 
     const onSubmit = (data: CreateProductFormValues) => {
         console.log("вызвался сабмит")
@@ -88,8 +90,22 @@ export default function CreateProduct() {
                     </div>
                     <div className="grid gap-1">
                         <Label htmlFor="image-1">Изображение</Label>
-                        <Input id="image-1" type="file" accept="image/*"
-                        {...register("image", { required: "Выберите изображение" })}/>
+                        <Input id="image-1" type="file" accept="image/*" className="sr-only"
+                        {...register("image", { required: "Выберите изображение",
+                            onChange: (e) => {
+                                if (e.target.files && e.target.files.length > 0) {
+                                    setFileName(e.target.files[0].name);
+                                }
+                            }                          
+                         })}/>
+                        <label
+                            htmlFor="image-1"
+                            className="flex h-32 w-full cursor-pointer items-center 
+                            justify-center rounded-md border-2 border-dashed
+                            bg-gray-50 text-center text-sm text-muted-foreground hover:bg-gray-100"
+                        >
+                            {fileName ? `${fileName}` : "Перетащите изображение или кликните для выбора"}
+                        </label>
                         {errors.image && (
                             <p className="text-sm text-red-500">{errors.image.message}</p>
                         )}
