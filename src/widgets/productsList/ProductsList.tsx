@@ -1,7 +1,4 @@
-import ProductCard from "@/widgets/productCard/ProductCard";
-import { useGetProductsQuery } from "@/model/productsApi";
-import { useAppDispatch, useAppSelector } from "@/hooks/reduxHooks";
-import { useMemo, useState } from "react";
+import ProductCard from "@/widgets/ProductCard";
 import { useGetFilteredProducts } from "./hooks/useGetFilteredProducts";
 
 export default function ProductsList() {

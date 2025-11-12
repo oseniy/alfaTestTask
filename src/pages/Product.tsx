@@ -1,9 +1,8 @@
-import { Dialog } from "@/shared/shadcn/ui/dialog";
+import ProductModal from "@/widgets/ProductModal";
 
 export default function Product() {
+
     return (
-        <Dialog>
-            взащпвза
-        </Dialog>
+        <ProductModal/>
     )
 }

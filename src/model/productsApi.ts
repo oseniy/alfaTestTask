@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import type { productsT, productT } from '../types'
+import type { productId, productsT, productT } from '../types'
 
 export const productsApi = createApi({
     reducerPath: 'productsApi',
@@ -9,7 +9,7 @@ export const productsApi = createApi({
             query: () => 'products',
             transformResponse: (response: any) => {
                 const mapped = (response.products ?? []).map((p: any) => ({
-                    id: String(p.id),
+                    id: String(p.id) as productId,
                     title: p.title,
                     price: Number(p.price),
                     image: p.thumbnail ?? (p.images?.[0] ?? ''),

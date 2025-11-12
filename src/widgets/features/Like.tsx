@@ -3,10 +3,11 @@ import { useIsMobile } from "@/hooks/useIsMobile";
 import { toggleLike } from "@/model/productsSlice";
 import { Toggle } from "@/shared/shadcn/ui/toggle";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/shared/shadcn/ui/tooltip";
+import type { productId } from "@/types";
 import { Heart } from "lucide-react";
 
 
-export default function Like({ id }: { id: string }) {
+export default function Like({ id }: { id: productId}) {
   const dispatch = useAppDispatch()
   const likedProductIds = useAppSelector((s) => s.products.likedProductIds)
   const isLiked = likedProductIds.includes(id)

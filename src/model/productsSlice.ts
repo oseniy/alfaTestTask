@@ -1,9 +1,9 @@
-import type { productsT, productT } from '@/types'
+import type { productId, productsT, productT } from '@/types'
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 
 interface productsState extends productsT {
-    likedProductIds: string[],
+    likedProductIds: productId[],
     likedOnlyFilter: boolean
 }
 
@@ -23,11 +23,11 @@ export const productsSlice = createSlice({
         addProduct: (state, action: PayloadAction<productT>) => {
             state.list.push(action.payload)
         },
-        deleteProduct: (state, action: PayloadAction<string>) => {
+        deleteProduct: (state, action: PayloadAction<productId>) => {
             state.list = state.list.filter((p) => p.id !== action.payload)
             state.likedProductIds = state.likedProductIds.filter((id) => id !== action.payload)
         },
-        toggleLike: (state, action: PayloadAction<string>) => {
+        toggleLike: (state, action: PayloadAction<productId>) => {
             const id = action.payload;
             if (state.likedProductIds.includes(id)) {
                 state.likedProductIds = state.likedProductIds.filter((productId) => productId !== id);
