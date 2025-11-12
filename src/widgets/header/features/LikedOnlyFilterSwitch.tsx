@@ -1,4 +1,4 @@
-import { useAppDispatch } from "@/hooks/reduxHooks";
+import { useAppDispatch, useAppSelector } from "@/hooks/reduxHooks";
 import { useIsMobile } from "@/hooks/useIsMobile";
 import { toggleLikedOnlyFilter } from "@/model/productsSlice";
 import { Label } from "@/shared/shadcn/ui/label";
@@ -8,6 +8,7 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "@/shared/shadcn/ui/tool
 export default function LikedOnlyFilterSwitch() {
     const isMobile = useIsMobile();
     const dispatch = useAppDispatch();
+    const switched = useAppSelector((s) => s.products.likedOnlyFilter)
 
     return (
         <div className="flex items-center space-x-2">
@@ -15,6 +16,7 @@ export default function LikedOnlyFilterSwitch() {
                 <TooltipTrigger asChild>
                     <div>
                         <Switch
+                        defaultChecked={switched}
                         onCheckedChange={() => dispatch(toggleLikedOnlyFilter())} />
                     </div>
                 </TooltipTrigger>

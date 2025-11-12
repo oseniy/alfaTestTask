@@ -25,7 +25,7 @@ export default function Like({ id }: { id: string }) {
                     }}
                     size="icon-lg"
                     variant="outline"
-                    className="data-[state=on]:bg-transparent 
+                    className=" cursor-pointer data-[state=on]:bg-transparent 
                     data-[state=on]:*:[svg]:fill-red-500 
                     data-[state=on]:*:[svg]:stroke-red-500">
                         <Heart/>
