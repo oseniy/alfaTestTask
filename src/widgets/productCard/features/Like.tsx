@@ -19,7 +19,10 @@ export default function Like({ id }: { id: string }) {
 
                     <Toggle 
                     pressed={isLiked}
-                    onPressedChange={() => dispatch(toggleLike(id))}
+                    onClick={(e) => {
+                        e.stopPropagation()
+                        dispatch(toggleLike(id))
+                    }}
                     size="icon-lg"
                     variant="outline"
                     className="data-[state=on]:bg-transparent 

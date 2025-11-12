@@ -15,7 +15,10 @@ export default function Delete({ id }: { id: string }) {
                 <div>
 
                     <Button 
-                    onClick={() => dispatch(deleteProduct(id))}
+                    onClick={(e) => {
+                        e.stopPropagation()
+                        dispatch(deleteProduct(id))
+                    }}
                     variant="outline" size="icon-lg"> <Trash2/> </Button>
                 </div>
             </TooltipTrigger>
