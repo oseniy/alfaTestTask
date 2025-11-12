@@ -13,15 +13,14 @@ export default function ProductModal() {
 
     return (
         <Dialog open defaultOpen onOpenChange={() => navigate('/products')}>
-            <DialogContent className="" onOpenAutoFocus={(e) => e.preventDefault()}>
-                { isMobile ?
-                    <>
+            <DialogContent onOpenAutoFocus={(e) => e.preventDefault()}>
                         <img 
                         src={product?.image} 
                         alt="Logo"
-                        className=" flex-1 aspect-square w-full rounded-sm object-contain"/>
+                        className="flex-1 aspect-square max-w-full rounded-sm object-contain 
+                        max-w-[300px] max-h-[300px] w-full"/>
                         <DialogTitle>{product?.title}</DialogTitle>
-                        <DialogTitle className="text-[green]">{product?.price} $</DialogTitle>
+                        <DialogTitle className="text-[green]">{product?.price} $</DialogTitle >
                         <DialogDescription className="flex flex-1 items-center">
                             {product?.description}
                         </DialogDescription>
@@ -29,26 +28,6 @@ export default function ProductModal() {
                             <Like id={product?.id}/>
                             <Delete id={product?.id}/>
                         </DialogFooter>
-                    </>
-                :
-                    <>
-                    <div className="flex">
-                        <img 
-                        src={product?.image} 
-                        alt="Logo"
-                        className=" flex-1 aspect-square w-full rounded-sm object-contain"/>
-                        <DialogDescription className="flex flex-1 p-3 items-center">
-                            {product?.description}
-                        </DialogDescription>
-                    </div>
-                    <DialogTitle>{product?.title}</DialogTitle>
-                    <DialogTitle className="text-[green]">{product?.price} $</DialogTitle>
-                    <DialogFooter>
-                        <Like id={product?.id}/>
-                        <Delete id={product?.id}/>
-                    </DialogFooter>
-                    </>
-                }
             </DialogContent>
         </Dialog>
     )

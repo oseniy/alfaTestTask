@@ -16,13 +16,14 @@ export default function LikedOnlyFilterSwitch() {
                 <TooltipTrigger asChild>
                     <div>
                         <Switch
+                        id="switch-1"
                         defaultChecked={switched}
                         onCheckedChange={() => dispatch(toggleLikedOnlyFilter())} />
                     </div>
                 </TooltipTrigger>
                 {!isMobile && <TooltipContent>Показать только избранные</TooltipContent>}
             </Tooltip>
-            <Label htmlFor="airplane-mode">Только избранные</Label>
+            <Label htmlFor="switch-1">Только избранные</Label>
         </div>
 
     )
