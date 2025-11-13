@@ -8,7 +8,7 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "@/shared/shadcn/ui/tool
 export default function LikedOnlyFilterSwitch() {
     const isMobile = useIsMobile();
     const dispatch = useAppDispatch();
-    const switched = useAppSelector((s) => s.products.likedOnlyFilter)
+    const switched = useAppSelector((s) => s.products.likedOnlyFilter);
 
     return (
         <div className="flex items-center space-x-2">

@@ -15,7 +15,7 @@ export const productsApi = createApi({
                     image: p.thumbnail ?? (p.images?.[0] ?? ''),
                     description: p.description ?? '',
                 }))
-                return { list: mapped }
+                return { list: mapped };
             },
         }),
         getProductById: builder.query<productT, string>({
@@ -24,4 +24,4 @@ export const productsApi = createApi({
     }),
 })
 
-export const { useGetProductsQuery, useGetProductByIdQuery } = productsApi
+export const { useGetProductsQuery, useGetProductByIdQuery } = productsApi;

@@ -8,6 +8,6 @@ export function useGetFilteredProducts() {
     if (likedOnlyFilter) {
         return allProducts.filter((product) => likedProductIds.includes(product.id));
     } else {
-        return allProducts
+        return allProducts;
     }
 }

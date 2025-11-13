@@ -16,7 +16,6 @@ export default function Delete({ id }: { id: productId}) {
         <Tooltip>
             <TooltipTrigger asChild>
                 <div>
-
                     <Button 
                     onClick={(e) => {
                         navigate(`/products`)

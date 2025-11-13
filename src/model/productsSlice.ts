@@ -21,11 +21,11 @@ export const productsSlice = createSlice({
             state.list = action.payload;
         },
         addProduct: (state, action: PayloadAction<productT>) => {
-            state.list.push(action.payload)
+            state.list.push(action.payload);
         },
         deleteProduct: (state, action: PayloadAction<productId>) => {
-            state.list = state.list.filter((p) => p.id !== action.payload)
-            state.likedProductIds = state.likedProductIds.filter((id) => id !== action.payload)
+            state.list = state.list.filter((p) => p.id !== action.payload);
+            state.likedProductIds = state.likedProductIds.filter((id) => id !== action.payload);
         },
         toggleLike: (state, action: PayloadAction<productId>) => {
             const id = action.payload;
@@ -47,6 +47,7 @@ export const productsSlice = createSlice({
     }
 })
 
-export const { setProducts, addProduct, deleteProduct, toggleLike, updateProduct, toggleLikedOnlyFilter } = productsSlice.actions
+export const { setProducts, addProduct, deleteProduct, 
+    toggleLike, updateProduct, toggleLikedOnlyFilter } = productsSlice.actions;
 
-export default productsSlice.reducer
+export default productsSlice.reducer;

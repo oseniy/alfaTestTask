@@ -1,12 +1,10 @@
 import { ButtonGroup } from "@/shared/shadcn/ui/button-group";
 import { Separator } from "@/shared/shadcn/ui/separator";
-import { useIsMobile } from "@/hooks/useIsMobile";
 import LikedOnlyFilterSwitch from "./features/LikedOnlyFilterSwitch";
 import CreateProductBtn from "./features/CreateProductBtn";
 
 
 export default function Header() {
-    const isMobile = useIsMobile()
     return (
         <div className="sticky top-0 w-full pt-4 px-8 bg-white">
             <ButtonGroup className="pb-4">

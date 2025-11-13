@@ -22,7 +22,7 @@ export default function CreateProduct() {
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
     const lastId = useAppSelector((s) => s.products.list[s.products.list.length-1]?.id)
-    const { register, handleSubmit, watch, reset, formState: { errors } } =
+    const { register, handleSubmit, reset, formState: { errors } } =
     useForm<CreateProductFormValues>()
 
     const [fileName, setFileName] = useState<string>("");
@@ -42,7 +42,7 @@ export default function CreateProduct() {
         dispatch(addProduct(product))
         reset()
         navigate('/products')
-  }
+    }
 
     return (
         <Dialog open defaultOpen onOpenChange={() => navigate('/products')}>

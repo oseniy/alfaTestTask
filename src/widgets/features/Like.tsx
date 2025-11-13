@@ -8,16 +8,15 @@ import { Heart } from "lucide-react";
 
 
 export default function Like({ id }: { id: productId}) {
-  const dispatch = useAppDispatch()
-  const likedProductIds = useAppSelector((s) => s.products.likedProductIds)
-  const isLiked = likedProductIds.includes(id)
-  const isMobile = useIsMobile()
+  const dispatch = useAppDispatch();
+  const likedProductIds = useAppSelector((s) => s.products.likedProductIds);
+  const isLiked = likedProductIds.includes(id);
+  const isMobile = useIsMobile();
 
     return (
         <Tooltip>
             <TooltipTrigger asChild>
                 <div>
-
                     <Toggle 
                     pressed={isLiked}
                     onClick={(e) => {
