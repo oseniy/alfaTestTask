@@ -143,7 +143,7 @@ const onSubmit = (data: CreateProductFormValues) => {
                         <label
                             htmlFor="image-1"
                             className="flex h-20 w-full cursor-pointer items-center 
-                            justify-center rounded-md border-2 border-dashed
+                            justify-center overflow-scroll rounded-md border-2 border-dashed
                             bg-gray-50 text-center text-sm text-muted-foreground hover:bg-gray-100"
                         >
                             {fileName ? `${fileName}` : "Нажмите для выбора изображения"}
