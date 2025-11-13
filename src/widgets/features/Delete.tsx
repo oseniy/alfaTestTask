@@ -42,7 +42,9 @@ export default function Delete({ id }: { id: productId}) {
                             onClick={(e) => {
                                 navigate(`/products`)
                                 e.stopPropagation()
-                                dispatch(deleteProduct(id))
+                                setTimeout(() => {
+                                    dispatch(deleteProduct(id));
+                                }, 300);
                             }} 
                         >
                             Удалить
