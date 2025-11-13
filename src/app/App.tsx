@@ -14,9 +14,10 @@ export default function App() {
       <main className="w-full">
         <Routes>
           <Route path="/products" element={<Products />}>
-            <Route path=":id" element={<Product />} />
+            <Route path=":id" element={<Product />} >          
+              <Route path="edit" element={<EditProduct />}/>
+            </Route>
             <Route path="create-product" element={<CreateProduct />} />
-            <Route path="edit/:id" element={<EditProduct />}/>
           </Route>
         </Routes>
       </main>

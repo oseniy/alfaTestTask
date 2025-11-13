@@ -16,7 +16,7 @@ export default function EditBtn({ id }: { id: productId}) {
                 <div>
                     <Button
                     variant="outline" size="icon-lg"
-                    onClick={() => navigate(`/products/edit/${id}`)}
+                    onClick={() => navigate(`/products/${id}/edit`)}
                     > <SquarePen/> </Button>
                 </div>
             </TooltipTrigger>
