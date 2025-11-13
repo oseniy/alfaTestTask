@@ -56,7 +56,8 @@ export default function CreateProduct() {
                     <div className="grid gap-1">
                         <Label htmlFor="title-1">Название</Label>
                         <Input placeholder="картошка" id="title-1" 
-                        {...register("title", { required: "Введите название" })}/>
+                        {...register("title", { required: "Введите название", 
+                        maxLength: {value: 100, message: "Максимальная длина текста: 100 символов"} })}/>
                         {errors.title && (
                             <p className="text-sm text-red-500">{errors.title.message}</p>
                         )}
@@ -70,7 +71,8 @@ export default function CreateProduct() {
                             <InputGroupInput type="number" id="price-1" placeholder="0.00"
                             {...register("price", { required: "Введите цену", 
                             valueAsNumber: true, 
-                            min: {value: 0, message: "Цена должна быть неотрицательна"} })}/>
+                            min: {value: 0, message: "Цена должна быть неотрицательна"},
+                            maxLength: {value: 30, message: "Максимальная длина текста: 30 символов"} })}/>
                         </InputGroup>
                         {errors.price && (
                             <p className="text-sm text-red-500">{errors.price.message}</p>
@@ -82,7 +84,7 @@ export default function CreateProduct() {
                             <InputGroupTextarea id="description-1"
                             className="resize-none overflow-y-auto max-h-48"
                             {...register("description", { required: "Введите описание",
-                             maxLength: {value: 500, message: "максимальная длина текста: 500 символов"} })}/>
+                             maxLength: {value: 500, message: "Максимальная длина текста: 500 символов"} })}/>
                         </InputGroup>
                         {errors.description && (
                             <p className="text-sm text-red-500">{errors.description.message}</p>
@@ -100,11 +102,11 @@ export default function CreateProduct() {
                          })}/>
                         <label
                             htmlFor="image-1"
-                            className="flex h-32 w-full cursor-pointer items-center 
+                            className="flex h-20 w-full cursor-pointer items-center 
                             justify-center rounded-md border-2 border-dashed
                             bg-gray-50 text-center text-sm text-muted-foreground hover:bg-gray-100"
                         >
-                            {fileName ? `${fileName}` : "Перетащите изображение или кликните для выбора"}
+                            {fileName ? `${fileName}` : "Нажмите для выбора изображения"}
                         </label>
                         {errors.image && (
                             <p className="text-sm text-red-500">{errors.image.message}</p>
