@@ -3,6 +3,7 @@ import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogTitle } f
 import { useNavigate, useParams } from "react-router-dom";
 import Like from "./features/Like";
 import Delete from "./features/Delete";
+import EditBtn from "./features/EditBtn";
 
 export default function ProductModal() {
     const { id } = useParams();
@@ -23,6 +24,7 @@ export default function ProductModal() {
                             {product?.description}
                         </DialogDescription>
                         <DialogFooter className="flex-row">
+                            <EditBtn id={product?.id}/>
                             <Like id={product?.id}/>
                             <Delete id={product?.id}/>
                         </DialogFooter>

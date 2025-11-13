@@ -18,7 +18,7 @@ interface CreateProductFormValues {
   image: FileList
 }
 
-export default function CreateProduct() {
+export default function EditProduct() {
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
     const lastId = useAppSelector((s) => s.products.list[s.products.list.length-1]?.id)
@@ -49,7 +49,7 @@ export default function CreateProduct() {
                 <DialogContent>
                     <DialogHeader>
                         <DialogTitle>
-                            Новый товар
+                            Редактировать товар
                         </DialogTitle>
                     </DialogHeader>
                     <div className="grid gap-1">

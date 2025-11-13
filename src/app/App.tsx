@@ -4,6 +4,7 @@ import Products from "@/pages/Products";
 import useSetProducts from "@/hooks/useSetProducts";
 import Product from "@/pages/Product";
 import CreateProduct from "@/pages/CreateProduct";
+import EditProduct from "@/pages/EditProduct";
 
 export default function App() {
 
@@ -15,6 +16,7 @@ export default function App() {
           <Route path="/products" element={<Products />}>
             <Route path=":id" element={<Product />} />
             <Route path="create-product" element={<CreateProduct />} />
+            <Route path="edit/:id" element={<EditProduct />}/>
           </Route>
         </Routes>
       </main>
