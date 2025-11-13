@@ -3,10 +3,10 @@ import type { productId, productsT, productT } from '../types'
 
 export const productsApi = createApi({
     reducerPath: 'productsApi',
-    baseQuery: fetchBaseQuery({ baseUrl: 'https://dummyjson.com/' }),
+    baseQuery: fetchBaseQuery({ baseUrl: 'https://oseniy.github.io/myFakeStoreApi/' }),
     endpoints: (builder) => ({
         getProducts: builder.query<productsT, void>({
-            query: () => 'products',
+            query: () => 'products.json',
             transformResponse: (response: any) => {
                 const mapped = (response.products ?? []).map((p: any) => ({
                     id: String(p.id) as productId,
@@ -17,11 +17,8 @@ export const productsApi = createApi({
                 }))
                 return { list: mapped };
             },
-        }),
-        getProductById: builder.query<productT, string>({
-            query: (id) => `products/${id}`,
-        }),
+        })
     }),
 })
 
-export const { useGetProductsQuery, useGetProductByIdQuery } = productsApi;
+export const { useGetProductsQuery } = productsApi;
