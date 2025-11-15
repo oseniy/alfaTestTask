@@ -8,7 +8,7 @@ import App from './app/App.tsx';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename="/alfaTestTask">
       <Provider store={store}>
         <App />
       </Provider>
