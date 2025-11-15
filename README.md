@@ -27,14 +27,16 @@
 
 ## 📈 Скриншоты
 
-<!-- <p align="center">
-  <img src="./screenshots/screenshot1.jpg" width="100%" />
-  <img src="./screenshots/screenshot2.jpg" width="100%" />
-  <img src="./screenshots/screenshot3.jpg" width="45%" /><img src="./screenshots/screenshot4.jpg" width="45%" />  <img src="./screenshots/screenshot5.jpg" width="100%" />
-</p> -->
+<p align="center">
+  <img src="./screenshots/screenshot1.png" width="100%" />
+  <img src="./screenshots/screenshot2.png" width="100%" />
+  <img src="./screenshots/screenshot3.png" width="100%" />
+  <img src="./screenshots/screenshot4.jpg" width="45%" />  
+  <img src="./screenshots/screenshot5.jpg" width="45%" />
+</p>
 
 ## 
 
 ## 🎮 Развернутое приложение
 
-👉 [Запустить онлайн](ссылка)  
+👉 [Запустить онлайн]([ссылка](https://oseniy.github.io/alfaTestTask/))  
