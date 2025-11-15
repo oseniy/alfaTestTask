@@ -4,11 +4,12 @@ import { Outlet, useNavigate, useParams } from "react-router-dom";
 import Like from "./features/Like";
 import Delete from "./features/Delete";
 import EditBtn from "./features/EditBtn";
+import { selectProductById } from "@/model/productsSelectors";
 
 export default function ProductModal() {
     const { id } = useParams();
     const navigate = useNavigate();
-    const product = useAppSelector((s) => s.products.list.find((p) => p.id === id));
+    const product = useAppSelector(selectProductById(id));
 
     return (
         <>

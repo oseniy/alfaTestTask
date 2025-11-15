@@ -1,6 +1,6 @@
-import type { productId, productsT, productT } from '@/types'
-import { createSlice } from '@reduxjs/toolkit'
-import type { PayloadAction } from '@reduxjs/toolkit'
+import type { productId, productsT, productT } from '@/types';
+import { createSlice } from '@reduxjs/toolkit';
+import type { PayloadAction } from '@reduxjs/toolkit';
 
 interface productsState extends productsT {
     likedProductIds: productId[],

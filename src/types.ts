@@ -1,4 +1,4 @@
-export type productId = string | undefined
+export type productId = string | undefined;
 
 export interface productT {
     id: productId,
@@ -6,8 +6,8 @@ export interface productT {
     price: number,
     image: string,
     description: string
-}
+};
 
 export interface productsT {
     list: productT[]
-}
+};

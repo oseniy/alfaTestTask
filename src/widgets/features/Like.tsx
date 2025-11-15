@@ -1,5 +1,6 @@
 import { useAppDispatch, useAppSelector } from "@/hooks/reduxHooks";
 import { useIsMobile } from "@/hooks/useIsMobile";
+import { selectLikedProductIds } from "@/model/productsSelectors";
 import { toggleLike } from "@/model/productsSlice";
 import { Toggle } from "@/shared/shadcn/ui/toggle";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/shared/shadcn/ui/tooltip";
@@ -9,7 +10,7 @@ import { Heart } from "lucide-react";
 
 export default function Like({ id }: { id: productId}) {
   const dispatch = useAppDispatch();
-  const likedProductIds = useAppSelector((s) => s.products.likedProductIds);
+  const likedProductIds = useAppSelector(selectLikedProductIds);
   const isLiked = likedProductIds.includes(id);
   const isMobile = useIsMobile();
 
