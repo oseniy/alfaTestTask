@@ -1,11 +1,11 @@
 import { useNavigate } from "react-router";
 import { Item, ItemContent, ItemDescription, ItemHeader, ItemTitle } from "@/shared/shadcn/ui/item";
-import type { productT } from "@/types";
+import type { ProductT } from "@/types";
 import Like from "./features/Like";
 import Delete from "./features/Delete";
 
 interface ProductCardProps {
-    product: productT
+    product: ProductT
 }
 
 export default function ProductCard({product} : ProductCardProps) {

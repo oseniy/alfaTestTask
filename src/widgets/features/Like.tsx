@@ -4,11 +4,11 @@ import { selectLikedProductIds } from "@/model/productsSelectors";
 import { toggleLike } from "@/model/productsSlice";
 import { Toggle } from "@/shared/shadcn/ui/toggle";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/shared/shadcn/ui/tooltip";
-import type { productId } from "@/types";
+import type { ProductId } from "@/types";
 import { Heart } from "lucide-react";
 
 
-export default function Like({ id }: { id: productId}) {
+export default function Like({ id }: { id: ProductId}) {
   const dispatch = useAppDispatch();
   const likedProductIds = useAppSelector(selectLikedProductIds);
   const isLiked = likedProductIds.includes(id);

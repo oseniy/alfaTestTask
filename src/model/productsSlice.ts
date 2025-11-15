@@ -1,9 +1,9 @@
-import type { productId, productsT, productT } from '@/types';
+import type { ProductId, ProductsT, ProductT } from '@/types';
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 
-interface productsState extends productsT {
-    likedProductIds: productId[],
+interface productsState extends ProductsT {
+    likedProductIds: ProductId[],
     likedOnlyFilter: boolean
 }
 
@@ -17,20 +17,20 @@ export const productsSlice = createSlice({
     name: "products",
     initialState,
     reducers: {
-        setProducts: (state, action: PayloadAction<productT[]>) => {
+        setProducts: (state, action: PayloadAction<ProductT[]>) => {
             state.list = action.payload;
         },
-        addProduct: (state, action: PayloadAction<productT>) => {
+        addProduct: (state, action: PayloadAction<ProductT>) => {
             state.list.push(action.payload);
         },
-        deleteProduct: (state, action: PayloadAction<productId>) => {
+        deleteProduct: (state, action: PayloadAction<ProductId>) => {
             state.list = state.list.filter((p) => p.id !== action.payload);
             state.likedProductIds = state.likedProductIds.filter((id) => id !== action.payload);
         },
-        toggleLike: (state, action: PayloadAction<productId>) => {
+        toggleLike: (state, action: PayloadAction<ProductId>) => {
             const id = action.payload;
             if (state.likedProductIds.includes(id)) {
-                state.likedProductIds = state.likedProductIds.filter((productId) => productId !== id);
+                state.likedProductIds = state.likedProductIds.filter((ProductId) => ProductId !== id);
             } else {
                 state.likedProductIds.push(id);
             }
@@ -38,7 +38,7 @@ export const productsSlice = createSlice({
         toggleLikedOnlyFilter: (state) => {
             state.likedOnlyFilter = !state.likedOnlyFilter;
         },
-        updateProduct: (state, action: PayloadAction<productT>) => {
+        updateProduct: (state, action: PayloadAction<ProductT>) => {
             const index = state.list.findIndex(product => product.id === action.payload.id);
             if (index !== -1) {
                 state.list[index] = action.payload;

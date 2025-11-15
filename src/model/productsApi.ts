@@ -1,15 +1,15 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import type { productId, productsT } from '../types';
+import type { ProductId, ProductsT } from '../types';
 
 export const productsApi = createApi({
     reducerPath: 'productsApi',
     baseQuery: fetchBaseQuery({ baseUrl: 'https://oseniy.github.io/myFakeStoreApi/' }),
     endpoints: (builder) => ({
-        getProducts: builder.query<productsT, void>({
+        getProducts: builder.query<ProductsT, void>({
             query: () => 'products.json',
             transformResponse: (response: any) => {
                 const mapped = (response.products ?? []).map((p: any) => ({
-                    id: String(p.id) as productId,
+                    id: String(p.id) as ProductId,
                     title: p.title,
                     price: Number(p.price),
                     image: p.thumbnail ?? (p.images?.[0] ?? ''),

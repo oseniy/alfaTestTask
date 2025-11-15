@@ -1,13 +1,13 @@
-export type productId = string | undefined;
+export type ProductId = string | undefined;
 
-export interface productT {
-    id: productId,
+export interface ProductT {
+    id: ProductId,
     title: string,
     price: number,
     image: string,
     description: string
 };
 
-export interface productsT {
-    list: productT[]
+export interface ProductsT {
+    list: ProductT[]
 };

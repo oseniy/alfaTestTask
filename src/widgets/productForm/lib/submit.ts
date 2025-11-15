@@ -1,9 +1,9 @@
-import type { productT, productId } from "@/types";
+import type { ProductT, ProductId } from "@/types";
 import { addProduct, updateProduct } from "@/model/productsSlice";
 
 export const buildSubmitHandler =
-    (mode: "create" | "edit", existingProduct: productT | undefined, dispatch: any) =>
-        (data: any, lastId: productId) => {
+    (mode: "create" | "edit", existingProduct: ProductT | undefined, dispatch: any) =>
+        (data: any, lastId: ProductId) => {
 
             const imageUrl =
                 typeof data.image === "string"
@@ -12,11 +12,11 @@ export const buildSubmitHandler =
                 ? URL.createObjectURL(data.image[0])
                 : existingProduct?.image ?? "";
 
-            const updatedProduct: productT = {
+            const updatedProduct: ProductT = {
                 id:
                 mode === "edit" && existingProduct
                     ? existingProduct.id
-                    : String(Number(lastId) + 1) as productId,
+                    : String(Number(lastId) + 1) as ProductId,
                 title: data.title,
                 price: Number(data.price),
                 description: data.description,
