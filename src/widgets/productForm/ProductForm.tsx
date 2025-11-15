@@ -1,4 +1,3 @@
-import { store } from "@/app/store"
 import { useForm } from "react-hook-form"
 import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from "@/shared/shadcn/ui/dialog";
 import { Input } from "@/shared/shadcn/ui/input";
@@ -7,27 +6,22 @@ import { Label } from "@/shared/shadcn/ui/label";
 import { useNavigate, useParams } from "react-router-dom";
 import { Button } from "@/shared/shadcn/ui/button";
 import { useAppDispatch, useAppSelector } from "@/hooks/reduxHooks";
-import { addProduct, updateProduct } from "@/model/productsSlice";
-import type { productId, productT } from "@/types";
 import { useEffect, useState } from "react";
+import type { CreateProductFormValues,  ModeValue } from "./lib/types";
+import { buildSubmitHandler } from "./lib/submit";
+import { selectLastId, selectProductById } from "@/model/productsSelectors";
+import { productValidation } from "./lib/validation";
 
-interface CreateProductFormValues {
-  title: string
-  price: number
-  description: string
-  image: FileList | string
+interface Props {
+    mode: ModeValue
 }
 
-interface ProductFormProps {
-  mode: "create" | "edit"
-  product?: productT
-}
-
-export default function ProductForm({ mode }: ProductFormProps) {
+export default function ProductForm({ mode }: Props) {
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
     const { id } = useParams();
-    const product = useAppSelector((s) => s.products.list.find((p) => p.id === id));
+    const lastId = useAppSelector(selectLastId);
+    const product = useAppSelector(selectProductById(id));
     const {
         register,
         handleSubmit,
@@ -44,41 +38,12 @@ export default function ProductForm({ mode }: ProductFormProps) {
     }, [mode, product]);
 
     
-const onSubmit = (data: CreateProductFormValues) => {
-  console.log("submit")
-  const list = store.getState().products.list
-  const lastId = list[list.length - 1]?.id ?? "0"
-
-  // Обработка изображения
-  const imageUrl =
-    typeof data.image === "string"
-      ? data.image // при редактировании уже строка
-      : data.image?.[0]
-      ? URL.createObjectURL(data.image[0])
-      : ""
-
-  // Общая структура товара
-  const updatedProduct: productT = {
-    id:
-      mode === "edit" && product
-        ? product.id // при редактировании сохраняем id
-        : String(Number(lastId) + 1) as productId, // при создании генерируем новый id
-    title: data.title,
-    price: Number(data.price),
-    description: data.description,
-    image: imageUrl,
-  }
-
-  // Выбираем экшен в зависимости от режима
-  if (mode === "edit") {
-    dispatch(updateProduct(updatedProduct))
-  } else {
-    dispatch(addProduct(updatedProduct))
-  }
-
-  reset()
-  navigate("/products")
-}
+  const onSubmit = (data: CreateProductFormValues) => {
+    const submit = buildSubmitHandler(mode, product, dispatch);
+    submit(data, lastId);
+    reset();
+    navigate("..")
+  };
 
     return (
         <Dialog open defaultOpen onOpenChange={() => navigate('/products')}>
@@ -89,15 +54,16 @@ const onSubmit = (data: CreateProductFormValues) => {
                             {mode === "create" ? "Новый товар" : "Редактирование товара"}
                         </DialogTitle>
                     </DialogHeader>
+
                     <div className="grid gap-1">
                         <Label htmlFor="title-1">Название</Label>
                         <Input placeholder="картошка" id="title-1" 
-                        {...register("title", { required: "Введите название", 
-                        maxLength: {value: 100, message: "Максимальная длина текста: 100 символов"} })}/>
+                        {...register("title", productValidation.title)}/>
                         {errors.title && (
                             <p className="text-sm text-red-500">{errors.title.message}</p>
                         )}
                     </div>
+
                     <div className="grid gap-1">
                         <Label htmlFor="price-1">Стоимость</Label>
                         <InputGroup>
@@ -105,27 +71,25 @@ const onSubmit = (data: CreateProductFormValues) => {
                                 <InputGroupText>$</InputGroupText>
                             </InputGroupAddon>
                             <InputGroupInput type="number" id="price-1" placeholder="0.00"
-                            {...register("price", { required: "Введите цену", 
-                            valueAsNumber: true, 
-                            min: {value: 0, message: "Цена должна быть неотрицательна"},
-                            maxLength: {value: 30, message: "Максимальная длина текста: 30 символов"} })}/>
+                            {...register("price", productValidation.price)}/>
                         </InputGroup>
                         {errors.price && (
                             <p className="text-sm text-red-500">{errors.price.message}</p>
                         )}
                     </div>
+
                     <div className="grid gap-1">
                         <Label htmlFor="description-1">Описание</Label>
                         <InputGroup>
                             <InputGroupTextarea id="description-1"
                             className="resize-none overflow-y-auto max-h-48"
-                            {...register("description", { required: "Введите описание",
-                             maxLength: {value: 500, message: "Максимальная длина текста: 500 символов"} })}/>
+                            {...register("description", productValidation.description)}/>
                         </InputGroup>
                         {errors.description && (
                             <p className="text-sm text-red-500">{errors.description.message}</p>
                         )}
                     </div>
+
                     <div className="grid gap-1">
                         <Label htmlFor="image-1">Изображение</Label>
                         <Input id="image-1" type="file" accept="image/*" className="sr-only"
@@ -152,6 +116,7 @@ const onSubmit = (data: CreateProductFormValues) => {
                             <p className="text-sm text-red-500">{errors.image.message}</p>
                         )}
                     </div>
+
                     <DialogFooter>
                         <Button variant="outline"  onClick={() => navigate('..')}>Отмена</Button>
                         <Button type="submit" form="product-form">
